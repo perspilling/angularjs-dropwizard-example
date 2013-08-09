@@ -1,0 +1,242 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>no.kodemaker.ps</groupId>
+    <artifactId>angularjs-dropwizard-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>angularjs-dropwizard-example</name>
+
+    <organization>
+        <name>Kodemaker Systemutvikling AS</name>
+        <url>http://www.kodemaker.no/</url>
+    </organization>
+
+    <modules>
+        <module>dw-server</module>
+        <module>angularjs-webapp</module>
+    </modules>
+
+    <!-- ======================== -->
+    <!-- Properties/Versions -->
+    <!-- ======================== -->
+    <properties>
+        <!-- Maven project settings -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- <buildnumber.version>1.1</buildnumber.version> -->
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <targetJdk>1.7</targetJdk>
+        <java.version>1.7</java.version>
+
+        <postgresql.version>9.1-901.jdbc4</postgresql.version>
+
+        <!--
+        Jetty (for the event-webapp). Make sure that the version corresponds with the Jetty
+        version included with Dropwizard. See:
+        http://mvnrepository.com/artifact/com.yammer.dropwizard/dropwizard-core/0.6.2
+        -->
+        <jetty.version>8.1.10.v20130312</jetty.version>
+
+        <!-- For JSP jars -->
+        <glassfish.javax.version>2.2.3</glassfish.javax.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Servlet API -->
+            <!--dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+            </dependency-->
+
+            <!-- Dropwizard. This will pull in a suite of other libraries / frameworks, such as JAX-RS, Jetty, etc. -->
+            <dependency>
+                <groupId>com.yammer.dropwizard</groupId>
+                <artifactId>dropwizard-core</artifactId>
+                <version>0.6.2</version>
+            </dependency>
+
+            <!--
+            Jetty (for the event-webapp). Make sure that the version corresponds with the Jetty
+            version included with Dropwizard. See:
+            http://mvnrepository.com/artifact/com.yammer.dropwizard/dropwizard-core/0.6.2
+            -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <!-- For the ProxyServlet -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlets</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <!-- JSP Support -->
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>javax.servlet.jsp</artifactId>
+                <version>${glassfish.javax.version}</version>
+            </dependency>
+
+            <!-- JDBC drivers -->
+            <dependency>
+                <groupId>postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+
+            <!-- Various util libs -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>13.0.1</version>
+            </dependency>
+
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.9.0</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <!-- ======================== -->
+    <!-- Build -->
+    <!-- ======================== -->
+    <build>
+        <!-- Build resources -->
+        <resources>
+            <resource> <!-- Main java source folder -->
+                <filtering>false</filtering>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource> <!-- Resources folder -->
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+
+            <!-- HTML-files in its own directory -->
+            <!--resource> 
+                <filtering>false</filtering>
+                <directory>src/main/html</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource-->
+
+        </resources>
+
+        <!-- Test resources -->
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
+
+        <!-- Build plugins -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${targetJdk}</source>
+                    <target>${targetJdk}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+        </plugins>
+        <pluginManagement>
+            <plugins>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+    <!-- ======================== -->
+    <!-- Distribution management -->
+    <!-- ======================== -->
+    <!--distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url></url>
+        </repository>
+
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url></url>
+        </snapshotRepository>
+    </distributionManagement-->
+
+    <!-- ======================== -->
+    <!-- Repository management -->
+    <!-- ======================== -->
+    <!--repositories>
+        <repository>
+            <id></id>
+            <url></url>
+        </repository>
+    </repositories-->
+
+    <!--reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.5.1</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting-->
+</project>

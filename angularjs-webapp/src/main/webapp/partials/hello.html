@@ -1,0 +1,80 @@
+<h2>AngularJS Hello, World!</h2>
+<!-- Angular Hello World example -->
+<div class="row-fluid">
+    <div class="span5">
+        <label>Name provided by user:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+
+        <h3>Hello {{yourName}}!</h3>
+        Angular can add too: {{ 1+2 }}.
+
+        <hr>
+        <h2>Simple controller</h2>
+
+        <div ng-controller="HelloCtrl">
+            <label>Name provided by the controller:</label>
+
+            <h3>Hello {{data.message}}!</h3>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="well">
+            <p>
+                This is a little example application that I have used to learn to use the AngularJS and Dropwizard
+                frameworks. It also serves as a project template that can be used to get a new project up and running
+                quickly using these frameworks + Jetty & Maven.
+            </p>
+            <p>
+                The examples have largely been taken from <a href="http://www.egghead.io">www.egghead.io</a>
+                and the Raffle example from
+                <a href="http://railscasts.com/episodes/405-angularjs">RailsCast</a> (subscription need).
+            </p>
+        </div>
+    </div>
+</div>
+
+<hr>
+<h2>Model scope used several places via the "dot"</h2>
+
+<input type="text" ng-model="data.message2">
+<h3>{{data.message2}}</h3>
+
+<div ng-controller="FirstCtrl">
+    <input type="text" ng-model="data.message2">
+
+    <h3>{{data.message2}}</h3>
+</div>
+
+<div ng-controller="SecondCtrl">
+    <input type="text" ng-model="data.message2">
+
+    <h3>{{data.message2}}</h3>
+</div>
+
+<!-- The following doesn't work for some reason...
+<hr>
+<h2>Some AngularUI/Bootstrap components</h2>
+
+<div ng-controller="ButtonsCtrl">
+    <h4>Single toggle</h4>
+    <pre>{{singleModel}}</pre>
+    <button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+        Single Toggle
+    </button>
+    <h4>Checkbox</h4>
+    <pre>{{checkModel}}</pre>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</button>
+        <button type="button" class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</button>
+        <button type="button" class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</button>
+    </div>
+    <h4>Radio</h4>
+    <pre>{{radioModel}}</pre>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">Left</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">Middle</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">Right</button>
+    </div>
+</div>
+-->
+

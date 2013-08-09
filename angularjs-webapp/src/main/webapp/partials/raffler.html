@@ -1,0 +1,23 @@
+<h1>Raffler</h1>
+<!--
+Raffle example from http://railscasts.com/episodes/405-angularjs without the
+use of Ruby on Rails (i.e. CoffeeScript etc..).
+-->
+<div class="span8" ng-controller="RaffleCtrl">
+    <!--form class="form-inline" ng-submit="addEntry()">
+        <input class="span6" type="text" ng-model="newEntry.name">
+        <button class="btn" type="submit">Add</button>
+    </form-->
+    <form class="form-inline" ng-submit="addEntry(newEntry)">
+        <input class="span6" type="text" ng-model="newEntry.name">
+        <button class="btn" type="submit">Add</button>
+    </form>
+    <ul class="raffle-list">
+        <li class="raffle-entry" ng-repeat="entry in entries">
+            {{entry.name}}
+            <span ng-show="entry.winner" class="winner">WINNER</span>
+        </li>
+    </ul>
+    entries.length={{entries.length}}<br>
+    <button class="btn btn-primary" ng-click="drawWinner()">Draw Winner</button>
+</div>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>no.kodemaker.ps</groupId>
+        <artifactId>angularjs-dropwizard-example</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>event-webapp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>event-webapp</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- Servlet API -->
+        <!--dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency-->
+
+        <!-- Jetty -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+        </dependency>
+
+        <!-- For the ProxyServlet -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+        </dependency>
+
+        <!-- JSP Support -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.servlet.jsp</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!--
+            The maven app assembler plugin will generate a script that sets up the classpath and runs your project.
+            Remember to set the JAVA_HOME to a JVM compatible with the Java version specified in the pom, otherwise
+            you might get the "UnsupportedClassVersionError : unsupported major.minor version 51.0" error when
+            trying to run the script (target/bin/webapp).
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <assembleDirectory>target</assembleDirectory> 
+                    <programs>
+                        <program>
+                            <mainClass>no.kodemaker.ps.Main</mainClass>
+                            <name>webapp</name>
+                        </program>
+                    </programs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>				
+                </executions>
+            </plugin>
+
+            <!--
+            The jetty-maven-plugin can be used to run Jetty with the mvn jetty:run command. Setting the
+            scanIntervalSeconds to 0 means that it will hot swap continuously when the source code is
+            changed.
+            -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

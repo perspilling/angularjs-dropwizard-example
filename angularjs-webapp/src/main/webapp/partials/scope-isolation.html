@@ -1,0 +1,20 @@
+<div ng-controller="ChoreCtrl">
+    <h3>Linking with '&' scope operator</h3>
+    <kid done="logChore(chore)">abc</kid>
+
+    <hr>
+    <h3>Linking with '@' scope operator</h3>
+    <input class="span3" type="text" ng-model="ctrlFlavor">
+    <drink flavor="{{ctrlFlavor}}"></drink>
+
+    <hr>
+    <h3>Linking with '=' scope operator</h3>
+    <input class="span3" type="text" ng-model="ctrlFruit">
+    <eat fruit="ctrlFruit"></eat>
+
+    <hr>
+    <h3>Linking again with '&' scope operator</h3>
+    <phone dial="callHome(message)"></phone>
+    <phone dial="callHome(message)"></phone>
+
+</div>

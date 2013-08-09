@@ -1,0 +1,15 @@
+<h2>Sharing data between controllers</h2>
+<div ng-controller="SDFirstCtrl">
+    <input type="text" ng-model="data.message">
+
+    <h3>{{data.message}}</h3>
+</div>
+
+<hr>
+<div ng-controller="SDSecondCtrl">
+    <h3>Reversed message:</h3>
+
+    <h3>{{reversedMessage(data.message)}}</h3>
+
+    <h3>{{data.message|reverse}}</h3>
+</div>

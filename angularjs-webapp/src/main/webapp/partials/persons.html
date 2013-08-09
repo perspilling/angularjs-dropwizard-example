@@ -1,0 +1,30 @@
+<h2>Example of calling a backend RESTful services</h2>
+
+<p>
+    <b>Note:</b> <i>For this example to run, make sure that the backend services in the <code>dw-server</code> have been
+    started. See the README file in that module for how to do that.</i>
+</p>
+
+<div ng-controller="PersonsCtrl">
+    <!--input type="text" ng-model="searchText.name" placeholder="Filter.."-->
+    <input type="text" ng-model="searchText.$" placeholder="Filter..">
+
+    <h3>List of persons</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="person in persons | orderBy:'name' | filter:searchText">
+            <td>{{person.name}}</td>
+            <td>{{person.email}}</td>
+            <td>{{person.mobile}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

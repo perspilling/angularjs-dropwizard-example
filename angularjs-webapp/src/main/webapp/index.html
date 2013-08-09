@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="css/foundation.min.css"-->
+    <link rel="stylesheet" href="css/raffler.css">
+</head>
+<body>
+
+<div class="container-fluid" ng-app="helloApp">
+
+    <div class="row-fluid">
+
+        <!--Sidebar content-->
+        <div class="span2">
+            <div ng-controller="MenuCtrl">
+                <div menu></div>
+            </div>
+        </div>
+
+        <!--Body content-->
+        <div class="span10">
+            <div ng-view></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- AngularJS and Boostrap JS files -->
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/angular-resource.js"></script>
+<!--
+Using the UI Bootstrap AngularJS directives for Bootstrap here. For more info see:
+http://angular-ui.github.io/bootstrap/
+-->
+<!--script src="js/ui-bootstrap-tpls-0.4.0.js"></script-->
+
+<!-- Project specific JS files -->
+<script src="js/menu.js"></script>
+<script src="js/sharing-data.js"></script>
+<script src="js/avengers.js"></script>
+<script src="js/scope-isolation.js"></script>
+<script src="js/twitter.js"></script>
+<script src="js/raffler.js"></script>
+<script src="js/tabset.js"></script>
+<script src="js/persons.js"></script>
+<script src="js/hello.js"></script>
+</body>
+</html>

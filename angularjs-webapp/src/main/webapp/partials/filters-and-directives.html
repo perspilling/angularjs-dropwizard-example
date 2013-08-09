@@ -1,0 +1,26 @@
+
+<h2>Filter example</h2>
+
+<div ng-controller="AvengersCtrl">
+    <input type="text" ng-model="searchText.name">
+    <table class="table table-striped">
+        <!-- Filter examples -->
+        <!--tr ng-repeat="actor in avengers.cast | filter:searchText"-->
+        <!--tr ng-repeat="actor in avengers.cast | orderBy:'name'"-->
+        <!--tr ng-repeat="actor in avengers.cast | orderBy:'-name'"-->
+        <!--tr ng-repeat="actor in avengers.cast | orderBy:'name' | limitTo:7 | filter:searchText"-->
+        <tr ng-repeat="actor in avengers.cast | orderBy:'name' | filter:searchText">
+            <td>{{actor.name}}</td>
+            <td>{{actor.character}}</td>
+        </tr>
+    </table>
+</div>
+
+<hr>
+<h2>Directive and behaviour examples</h2>
+<!-- element directive -->
+<superman></superman>
+
+<!-- attribute directive -->
+<!--div working></div-->
+<div enter="btn">This is the place</div>

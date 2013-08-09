@@ -1,0 +1,9 @@
+This is basically the example from: http://dropwizard.codahale.com/getting-started/
+
+Build it:
+
+> mvn package
+
+To start the Dropwizard Restful web services:
+
+> sh ./start_server.sh

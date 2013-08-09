@@ -1,0 +1,10 @@
+#
+# For defaults, see: http://dropwizard.codahale.com/manual/core/#configuration-defaults
+#
+template: Hello, %s!
+defaultName: Stranger
+
+
+# Avoid using the default 8080 port for RESTFul services
+http:
+  port: 9000
