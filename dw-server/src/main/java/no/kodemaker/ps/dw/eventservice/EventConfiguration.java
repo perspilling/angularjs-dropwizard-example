@@ -1,4 +1,4 @@
-package no.kodemaker.ps.dw.event.service;
+package no.kodemaker.ps.dw.eventservice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yammer.dropwizard.config.Configuration;
@@ -8,6 +8,13 @@ public class EventConfiguration extends Configuration {
     @NotEmpty
     @JsonProperty
     private String template;
+
+    /*
+    @Valid
+    @NotNull
+    @JsonProperty
+    private DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
+    */
 
     @NotEmpty
     @JsonProperty
@@ -20,4 +27,10 @@ public class EventConfiguration extends Configuration {
     public String getDefaultName() {
         return defaultName;
     }
+
+    /*
+    public DatabaseConfiguration getDatabaseConfiguration() {
+        return databaseConfiguration;
+    }
+    */
 }

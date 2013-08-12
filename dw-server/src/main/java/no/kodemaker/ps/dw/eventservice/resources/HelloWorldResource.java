@@ -1,8 +1,8 @@
-package no.kodemaker.ps.dw.event.resources;
+package no.kodemaker.ps.dw.eventservice.resources;
 
 import com.google.common.base.Optional;
 import com.yammer.metrics.annotation.Timed;
-import no.kodemaker.ps.dw.event.domain.Saying;
+import no.kodemaker.ps.dw.eventservice.representations.Saying;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

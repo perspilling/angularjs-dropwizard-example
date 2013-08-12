@@ -4,23 +4,35 @@
 var myApp = angular.module('persons', ['ngResource']);
 
 /**
- * Configure the PersonsResource. The port must be given as a parameter as the ':' is used
- * to name parameters in a $resource. In order to solve the Cross Origin Resource Sharing (CORS)
+ * Configure the PersonsResource. In order to solve the Cross Origin Resource Sharing (CORS)
  * issue I have set up a Jetty proxy servlet to forward requests transparently to the API server.
  * See the web.xml file for details on that.
  */
 myApp.factory('PersonsResource', function ($resource) {
-    return $resource('http://localhost:port/api/persons', {port: ':8080'}, {});
+    return $resource('/api/persons', {}, {});
 });
 
-/**
- * A file resource pointing to a file on the originating web server.
- */
-myApp.factory('PersonsFile', function ($resource) {
-    return $resource('data/persons.json', {}, {});
-});
-
-function PersonsCtrl($scope, $http, PersonsResource, PersonsFile) {
+function PersonsCtrl($scope, PersonsResource) {
     $scope.persons = PersonsResource.query();
-    $scope.personsFile = PersonsFile.query();
+
+    $scope.showForm = { person: false }
+
+    $scope.togglePersonForm = function () {
+        $scope.showForm.person = !$scope.showForm.person;
+    }
+
+    $scope.savePerson = function (newPerson) {
+        PersonsResource.save(newPerson)
+        $scope.persons.push(newPerson)
+        $scope.newPerson = {}
+    }
 }
+
+/*
+ $scope.kodemakerPersons = {}
+ $scope.persons = PersonsResource.query(function (response) {
+ angular.forEach(response, function (person) {
+ console.log('person.name=' + person.name)
+ });
+ });
+*/

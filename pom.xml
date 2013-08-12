@@ -29,7 +29,7 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <targetJdk>1.7</targetJdk>
         <java.version>1.7</java.version>
-
+        <dw.version>0.6.2</dw.version>
         <postgresql.version>9.1-901.jdbc4</postgresql.version>
 
         <!--
@@ -57,8 +57,21 @@
             <dependency>
                 <groupId>com.yammer.dropwizard</groupId>
                 <artifactId>dropwizard-core</artifactId>
-                <version>0.6.2</version>
+                <version>${dw.version}</version>
             </dependency>
+
+            <!-- The Dropwizard JDBI module -->
+            <dependency>
+                <groupId>com.yammer.dropwizard</groupId>
+                <artifactId>dropwizard-jdbi</artifactId>
+                <version>${dw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yammer.dropwizard</groupId>
+                <artifactId>dropwizard-db</artifactId>
+                <version>${dw.version}</version>
+            </dependency>
+
 
             <!--
             Jetty (for the event-webapp). Make sure that the version corresponds with the Jetty

@@ -2,8 +2,8 @@
 <!-- Angular Hello World example -->
 <div class="row-fluid">
     <div class="span5">
-        <label>Name provided by user:</label>
-        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <label for="name-input">Name provided by user:</label>
+        <input id="name-input" type="text" class="span8" ng-model="yourName" placeholder="Enter a name here">
 
         <h3>Hello {{yourName}}!</h3>
         Angular can add too: {{ 1+2 }}.

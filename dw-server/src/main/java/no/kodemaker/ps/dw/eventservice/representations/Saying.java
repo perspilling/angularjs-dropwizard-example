@@ -1,4 +1,4 @@
-package no.kodemaker.ps.dw.event.domain;
+package no.kodemaker.ps.dw.eventservice.representations;
 
 /**
  * Used for responding to hello requests.

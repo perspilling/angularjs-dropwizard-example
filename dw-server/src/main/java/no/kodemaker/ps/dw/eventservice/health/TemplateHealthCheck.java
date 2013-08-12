@@ -1,4 +1,4 @@
-package no.kodemaker.ps.dw.event.health;
+package no.kodemaker.ps.dw.eventservice.health;
 
 import com.yammer.metrics.core.HealthCheck;
 

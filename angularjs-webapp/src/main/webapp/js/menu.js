@@ -21,8 +21,8 @@ sidebarMenu.controller("MenuCtrl", function ($scope, $location, Menu) {
      See: http://stackoverflow.com/questions/12592472/how-to-highlight-a-current-menu-item-in-angularjs
      */
     $scope.getClass = function (item) {
-        console.log("location.path=" + $location.path())
-        console.log("item.href=" + item.href)
+        //console.log("location.path=" + $location.path())
+        //console.log("item.href=" + item.href)
         if ($location.path() == item.href) {
             return "active"
         } else {

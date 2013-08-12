@@ -1,4 +1,4 @@
-<h2>Example of calling a backend RESTful services</h2>
+<h2>Simple CRUD app using RESTful backend services</h2>
 
 <p>
     <b>Note:</b> <i>For this example to run, make sure that the backend services in the <code>dw-server</code> have been
@@ -6,10 +6,30 @@
 </p>
 
 <div ng-controller="PersonsCtrl">
-    <!--input type="text" ng-model="searchText.name" placeholder="Filter.."-->
-    <input type="text" ng-model="searchText.$" placeholder="Filter..">
+
+    <div class="control-group">
+        <input class="span6" type="text" ng-model="searchText.$" placeholder="Filter the list..">
+        <button ng-show="!showForm.person" class="span2 btn" style="margin-left: 0" type="button"
+                ng-model="showForm.personButtonLabel"
+                ng-click="togglePersonForm()">Show person form
+        </button>
+        <button ng-show="showForm.person" class="span2 btn" style="margin-left: 0" type="button"
+                ng-model="showForm.personButtonLabel"
+                ng-click="togglePersonForm()">Hide person form
+        </button>
+    </div>
+
+    <div ng-show="showForm.person">
+        <form class="form-inline" ng-submit="savePerson(newPerson)">
+            <input type="text" class="span4" placeholder="Name" ng-model="newPerson.name">
+            <input type="text" class="span4" placeholder="Email" ng-model="newPerson.email">
+            <input type="text" class="span2" placeholder="Mobile" ng-model="newPerson.phone">
+            <button type="submit" class="btn">Save person</button>
+        </form>
+    </div>
 
     <h3>List of persons</h3>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -22,7 +42,7 @@
         <tr ng-repeat="person in persons | orderBy:'name' | filter:searchText">
             <td>{{person.name}}</td>
             <td>{{person.email}}</td>
-            <td>{{person.mobile}}</td>
+            <td>{{person.phone}}</td>
         </tr>
         </tbody>
     </table>

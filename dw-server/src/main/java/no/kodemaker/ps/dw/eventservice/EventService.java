@@ -1,12 +1,15 @@
-package no.kodemaker.ps.dw.event.service;
+package no.kodemaker.ps.dw.eventservice;
 
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
-import no.kodemaker.ps.dw.event.domain.Person;
-import no.kodemaker.ps.dw.event.health.TemplateHealthCheck;
-import no.kodemaker.ps.dw.event.resources.HelloWorldResource;
-import no.kodemaker.ps.dw.event.resources.PersonsResource;
+import no.kodemaker.ps.dw.eventservice.health.TemplateHealthCheck;
+import no.kodemaker.ps.dw.eventservice.persistence.PersonDao;
+import no.kodemaker.ps.dw.eventservice.representations.Person;
+import no.kodemaker.ps.dw.eventservice.resources.HelloWorldResource;
+import no.kodemaker.ps.dw.eventservice.resources.PersonsResource;
+import org.h2.jdbcx.JdbcConnectionPool;
+import org.skife.jdbi.v2.DBI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,12 +43,27 @@ public class EventService extends Service<EventConfiguration> {
     }
 
     @Override
-    public void run(EventConfiguration conf, Environment env) {
-        final String template = conf.getTemplate();
-        final String defaultName = conf.getDefaultName();
+    public void run(EventConfiguration conf, Environment env) throws ClassNotFoundException {
+        String template = conf.getTemplate();
+        String defaultName = conf.getDefaultName();
 
+        //DBIFactory factory = new DBIFactory();
+        //final DBI jdbi = factory.build(env, conf.getDatabaseConfiguration(), "postgresql");
+        // using in-memory data base here for simplicity
+        JdbcConnectionPool jdbcConnectionPool = JdbcConnectionPool.create("jdbc:h2:mem:test", "username", "password");
+        DBI jdbi = new DBI(jdbcConnectionPool);
+        PersonDao personDao = jdbi.onDemand(PersonDao.class);
+        personDao.createPersonTable();
+        seedTheDatabase(personDao);
+
+        env.addResource(new PersonsResource(personDao));
         env.addResource(new HelloWorldResource(template, defaultName));
-        env.addResource(new PersonsResource(persons));
         env.addHealthCheck(new TemplateHealthCheck(template));
+    }
+
+    private void seedTheDatabase(PersonDao personDao) {
+        for (Person p : persons) {
+            personDao.insert(p);
+        }
     }
 }
