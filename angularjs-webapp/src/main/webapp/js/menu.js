@@ -46,8 +46,8 @@ sidebarMenu.factory('Menu', function () {
     Menu.items = [
         {
             class: "",
-            //href: "/index.html",
-            href: "/",
+            //href: "/#/index.html",
+            href: "/index.html",
             name: "Hello world"
         },
         {

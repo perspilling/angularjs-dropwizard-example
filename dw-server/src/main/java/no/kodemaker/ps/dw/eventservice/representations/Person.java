@@ -81,4 +81,8 @@ public class Person {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
+
+    public boolean isValid() {
+        return name != null && email != null;
+    }
 }

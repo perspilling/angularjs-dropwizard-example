@@ -18,15 +18,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PersonsResource {
-    // only for testing
-    private List<Person> persons;
-
     private PersonDao personDao;
-
-    // only for testing
-    public PersonsResource(List<Person> persons) {
-        this.persons = persons;
-    }
 
     public PersonsResource(PersonDao dao) {
         personDao = dao;
@@ -36,36 +28,24 @@ public class PersonsResource {
     @Path("/{id}")
     @Timed
     public Person getPerson(@PathParam("id") Integer id) {
-        if (persons != null) {
-            if (persons.size() > id) {
-                return persons.get(id);
-            }
+        Person p = personDao.findById(id);
+        if (p != null) {
+            return p;
         } else {
-            personDao.findById(id);
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        throw new WebApplicationException(Response.Status.NOT_FOUND);
     }
 
     @GET
     @Timed
     public List<Person> listPersons() {
-        if (persons != null) {
-            return persons;
-        } else {
-            return personDao.getAll();
-        }
+        return personDao.getAll();
     }
 
     @POST
     @Timed
     public void save(Person person) {
-        if (persons != null) {
-            if (!persons.contains(person)) {
-                persons.add(person);
-            } else {
-                persons.set(persons.indexOf(person), person);
-            }
-        } else {
+        if (person != null && person.isValid()) {
             if (person.getId() != null) {
                 personDao.update(person);
             } else {
@@ -77,15 +57,16 @@ public class PersonsResource {
     @DELETE
     @Path("/{id}")
     @Timed
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     public void deletePerson(@PathParam("id") Integer id) {
-        if (persons != null) {
-            if (persons.size() > id) {
-                persons.remove(id);
-            } else {
-                throw new WebApplicationException(Response.Status.NOT_FOUND);
-            }
-        } else {
+        /**
+         * Note: AngularJS $resource will send a DELETE request as content-type test/plain for some reason;
+         * so therefore we must add MediaType.TEXT_PLAIN here.
+         */
+        if (personDao.findById(id) != null) {
             personDao.deleteById(id);
+        } else {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
 }

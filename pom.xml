@@ -33,7 +33,7 @@
         <postgresql.version>9.1-901.jdbc4</postgresql.version>
 
         <!--
-        Jetty (for the event-webapp). Make sure that the version corresponds with the Jetty
+        Jetty (for the angularjs-webapp). Make sure that the version corresponds with the Jetty
         version included with Dropwizard. See:
         http://mvnrepository.com/artifact/com.yammer.dropwizard/dropwizard-core/0.6.2
         -->
@@ -74,7 +74,7 @@
 
 
             <!--
-            Jetty (for the event-webapp). Make sure that the version corresponds with the Jetty
+            Jetty (for the angularjs-webapp). Make sure that the version corresponds with the Jetty
             version included with Dropwizard. See:
             http://mvnrepository.com/artifact/com.yammer.dropwizard/dropwizard-core/0.6.2
             -->

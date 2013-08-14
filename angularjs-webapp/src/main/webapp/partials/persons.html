@@ -9,22 +9,26 @@
 
     <div class="control-group">
         <input class="span6" type="text" ng-model="searchText.$" placeholder="Filter the list..">
-        <button ng-show="!showForm.person" class="span2 btn" style="margin-left: 0" type="button"
-                ng-model="showForm.personButtonLabel"
+        <button ng-show="!personForm.show" class="span2 btn" style="margin-left: 0" type="button"
                 ng-click="togglePersonForm()">Show person form
         </button>
-        <button ng-show="showForm.person" class="span2 btn" style="margin-left: 0" type="button"
-                ng-model="showForm.personButtonLabel"
+        <button ng-show="personForm.show" class="span2 btn" style="margin-left: 0" type="button"
                 ng-click="togglePersonForm()">Hide person form
         </button>
     </div>
 
-    <div ng-show="showForm.person">
-        <form class="form-inline" ng-submit="savePerson(newPerson)">
-            <input type="text" class="span4" placeholder="Name" ng-model="newPerson.name">
-            <input type="text" class="span4" placeholder="Email" ng-model="newPerson.email">
-            <input type="text" class="span2" placeholder="Mobile" ng-model="newPerson.phone">
+    <div ng-show="personForm.show">
+        <form class="form-inline" ng-submit="savePerson(personForm.person)">
+            <input type="text" class="span4" placeholder="Name" ng-model="personForm.person.name">
+            <input type="text" class="span4" placeholder="Email" ng-model="personForm.person.email">
+            <input type="text" class="span2" placeholder="Mobile" ng-model="personForm.person.phone">
             <button type="submit" class="btn">Save person</button>
+            <!--
+             Note that the clear-button here must have the type attribute set to 'button' otherwise it will
+             by default get type=submit. See:
+             http://stackoverflow.com/questions/12319758/angularjs-clicking-a-button-within-a-form-causes-page-refresh
+            -->
+            <button type="button" class="btn" ng-click="clearForm()">Clear form</button>
         </form>
     </div>
 
@@ -33,16 +37,23 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th style="width: 100px">Operation</th>
+            <th style="width: 20px">Id</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Mobile</th>
+            <th>Phone</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="person in persons | orderBy:'name' | filter:searchText">
-            <td>{{person.name}}</td>
-            <td>{{person.email}}</td>
-            <td>{{person.phone}}</td>
+        <tr ng-repeat="p in personForm.persons | orderBy:'name' | filter:searchText">
+            <td style="width: 100px">
+                <button class="btn" ng-click="editPerson(p)"><i class="icon-edit"></i></button>
+                <button class="btn" ng-click="deletePerson(p)"><i class="icon-trash"></i></button>
+            </td>
+            <td style="width: 20px">{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.email}}</td>
+            <td>{{p.phone}}</td>
         </tr>
         </tbody>
     </table>
