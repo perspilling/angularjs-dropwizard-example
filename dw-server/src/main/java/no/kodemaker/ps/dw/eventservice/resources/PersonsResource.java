@@ -57,7 +57,7 @@ public class PersonsResource {
     @DELETE
     @Path("/{id}")
     @Timed
-    @Consumes({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
     public void deletePerson(@PathParam("id") Integer id) {
         /**
          * Note: AngularJS $resource will send a DELETE request as content-type test/plain for some reason;

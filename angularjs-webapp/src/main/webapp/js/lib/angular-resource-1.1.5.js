@@ -25,7 +25,7 @@
  * the need to interact with the low level {@link ng.$http $http} service.
  *
  * # Installation
- * To use $resource make sure you have included the `angular-resource.js` that comes in Angular
+ * To use $resource make sure you have included the `angular-resource-1.1.5.js` that comes in Angular
  * package. You can also find this file on Google CDN, bower as well as at
  * {@link http://code.angularjs.org/ code.angularjs.org}.
  *
