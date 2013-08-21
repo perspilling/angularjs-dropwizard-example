@@ -26,7 +26,7 @@ public class EventService extends Service<EventConfiguration> {
 
     static {
         persons = Collections.synchronizedList(new ArrayList<Person>());
-        persons.add(new Person("Per", "per@kodemaker.no", "90915115"));
+        persons.add(new Person("Per", "per@kodemaker.no", "12345678"));
         persons.add(new Person("Magnus", "magnus@kodemaker.no"));
         persons.add(new Person("Ronny", "ronny@kodemaker.no"));
         persons.add(new Person("August", "august@kodemaker.no"));

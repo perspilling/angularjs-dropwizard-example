@@ -4,6 +4,7 @@ This is a little example application that I have used to learn to use the Angula
 frameworks. It also serves as a project template that can be used to get a new project up and running
 quickly. The goals of the project
 
+
 # Architecture information
 
 AngularJS is used to create a simple webapp (angular-webapp module), while Dropwizard has
