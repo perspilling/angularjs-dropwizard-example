@@ -9,6 +9,7 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <!-- Configure a proxy to the back-end services -->
     <servlet>
         <servlet-name>proxy</servlet-name>
         <servlet-class>org.eclipse.jetty.servlets.ProxyServlet$Transparent</servlet-class>
@@ -24,6 +25,7 @@
         <!--async-supported>true</async-supported-->
     </servlet>
 
+    <!-- Make the proxy handle requests to /api/* -->
     <servlet-mapping>
         <servlet-name>proxy</servlet-name>
         <url-pattern>/api/*</url-pattern>

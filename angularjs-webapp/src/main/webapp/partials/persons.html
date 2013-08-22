@@ -8,21 +8,23 @@
 <div ng-controller="PersonsCtrl">
 
     <div class="control-group">
-        <input class="span6" type="text" ng-model="searchText.$" placeholder="Filter the list..">
-        <button ng-show="!personForm.show" class="span2 btn" style="margin-left: 0" type="button"
-                ng-click="togglePersonForm()">Show person form
-        </button>
-        <button ng-show="personForm.show" class="span2 btn" style="margin-left: 0" type="button"
-                ng-click="togglePersonForm()">Hide person form
-        </button>
+        <input class="span4" type="text" ng-model="searchText.$" placeholder="Filter the list..">
+        <!--
+         The following defines two buttons used for either hiding or showing the person form. The personForn.show
+         variable in the PersonCtrl determines which button is displayed.
+        -->
+        <button ng-show="!personForm.show" class="span3 btn" style="margin-left: 0; margin-right: 4px" type="button"
+                ng-click="togglePersonForm()">Show person form</button>
+        <button ng-show="personForm.show" class="span3 btn" style="margin-left: 0; margin-right: 4px" type="button"
+                ng-click="togglePersonForm()">Hide person form</button>
     </div>
 
     <div ng-show="personForm.show">
         <form class="form-inline" ng-submit="savePerson(personForm.person)">
-            <input type="text" class="span4" placeholder="Name" ng-model="personForm.person.name">
+            <input type="text" class="span3" placeholder="Name" ng-model="personForm.person.name">
             <input type="text" class="span4" placeholder="Email" ng-model="personForm.person.email">
             <input type="text" class="span2" placeholder="Mobile" ng-model="personForm.person.phone">
-            <button type="submit" class="btn">Save person</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             <!--
              Note that the clear-button here must have the type attribute set to 'button' otherwise it will
              by default get type=submit. See:
@@ -34,7 +36,7 @@
 
     <h3>List of persons</h3>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
         <tr>
             <th style="width: 100px">Operation</th>
@@ -45,7 +47,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="p in personForm.persons | orderBy:'name' | filter:searchText">
+        <tr ng-repeat="p in persons | orderBy:'name' | filter:searchText">
             <td style="width: 100px">
                 <button class="btn" ng-click="editPerson(p)"><i class="icon-edit"></i></button>
                 <button class="btn" ng-click="deletePerson(p)"><i class="icon-trash"></i></button>
