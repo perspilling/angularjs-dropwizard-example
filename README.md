@@ -2,13 +2,13 @@
 
 This is a little example application that I have used to learn to use the AngularJS and Dropwizard
 frameworks. It also serves as a project template that can be used to get a new project up and running
-quickly. The goals of the project
-
+quickly. A blog article describing what I did can be found here:
+[Getting Started With AngularJS, Jetty and Dropwizard](http://perspilling.heroku.com/blog/2013/08/21/getting-started-with-angularjs-jetty-and-dropwizard/)
 
 # Architecture information
 
-AngularJS is used to create a simple webapp (angular-webapp module), while Dropwizard has
-been used to create a backend server with RESTful services (dw-server). The two are deployed in different
+AngularJS is used to create a simple webapp (angularjs-webapp module), while Dropwizard has
+been used to create a backend server with RESTful services (dw-server module). The two are deployed on different
 web servers, as shown here:
 
 ![Deployment diagram](doc/deployment_diagram.jpg)
@@ -19,6 +19,7 @@ web servers, as shown here:
 - organizing an AngularJS webapp in modules and partials
 - AngularJS directives, filters, calling backend services via $resource, etc.
 - using Bootstrap with AngularJS
+- using $promise returned from $resource calls to ensure that certains functions are executed in sequence
 
 ## Jetty
 - using Jetty for both the webapp and the backend services
@@ -28,6 +29,7 @@ web servers, as shown here:
 
 ## Dropwizard
 - creating RESTful (JSON) services with Jersey & Jackson, including health checks
+- getting the services to handle requests from AngularJS $resource
 - creating persistence logic with JDBI
 
 ## Maven
