@@ -10,7 +10,6 @@ buildscript {
 apply plugin: 'jettymulti'
 
 
-
 dependencies {
     compile libs.jetty_webapp, libs.jetty_servlets, libs.servlet_jsp
 }
