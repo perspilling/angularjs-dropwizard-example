@@ -38,5 +38,14 @@ to generate a script that will set the classpath and run the webapp
 - building fat JARS with [Maven Shade Plugin](http://maven.apache.org/plugins/maven-shade-plugin/) making it
 possible to deploy Dropwizard services as single .jar files.
 
+## [Gradle](http://www.gradle.org)
+- For those with allergies towards xml bloat, there is a gradle (almost) equivalent build.
+
+
+### Running the app with gradle
+1. Start the dwServer `$projectRoot:> ./gradlew runDwServer`
+2. Start the webApp `$projectRoot:> ./gradlew jettyMrun`
+
+First time you run ./gradlew it will download a gradle distribution, not install neeeded.
 
 
