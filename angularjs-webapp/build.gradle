@@ -1,0 +1,17 @@
+// Using custom third party jetty plugin to enable jetty 8 support
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'com.github.martins1930.gradle', name: 'JettyMulti', version: '1.2.0-RELEASE'
+    }
+}
+apply plugin: 'jettymulti'
+
+
+dependencies {
+    compile libs.jetty_webapp, libs.jetty_servlets, libs.servlet_jsp
+}
+
+jettyMRun.contextApp = ""

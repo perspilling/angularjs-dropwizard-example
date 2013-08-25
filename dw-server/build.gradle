@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        maven {
+            name 'Gradle Shadow'
+            url 'http://dl.bintray.com/content/johnrengelman/gradle-plugins'
+        }
+    }
+    dependencies {
+        classpath 'org.gradle.plugins:shadow:0.7.4'
+    }
+}
+apply plugin: 'shadow'
+
+// Configure shadow (port of maven shade to gradle)
+shadow {
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    exclude 'META-INF/*.SF'
+}
+build.dependsOn 'shadow'  // wire shadow task into build cycle
+
+dependencies {
+    compile     libs.dropwizard_core, libs.dropwizard_jdbi, libs.dropwizard_db, libs.h2
+    testCompile libs.jersey_client
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'no.kodemaker.ps.dw.eventservice.EventService'
+    }
+}
+
+task runDwServer(type: JavaExec) {
+    dependsOn 'shadow'
+    description = "Run the server (on port 9000)"
+    main = '-jar'
+    args = [project.shadow.shadowJar, 'server', file('dw-server.yml')]
+}
