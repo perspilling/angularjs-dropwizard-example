@@ -8,3 +8,5 @@
 classes
 .idea
 target
+build
+.gradle
