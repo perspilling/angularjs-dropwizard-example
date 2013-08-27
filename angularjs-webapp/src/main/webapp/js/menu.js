@@ -23,7 +23,8 @@ sidebarMenu.controller("MenuCtrl", function ($scope, $location, Menu) {
     $scope.getClass = function (item) {
         //console.log("location.path=" + $location.path())
         //console.log("item.href=" + item.href)
-        if ($location.path() == item.href) {
+        //if ($location.path() == item.href) {
+        if ($location.path() == item.href.substr(2)) {
             return "active"
         } else {
             return ""
