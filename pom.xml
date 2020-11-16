@@ -37,7 +37,7 @@
         version included with Dropwizard. See:
         http://mvnrepository.com/artifact/com.yammer.dropwizard/dropwizard-core/0.6.2
         -->
-        <jetty.version>8.1.10.v20130312</jetty.version>
+        <jetty.version>9.4.34.v20201102</jetty.version>
 
         <!-- For JSP jars -->
         <glassfish.javax.version>2.2.3</glassfish.javax.version>
